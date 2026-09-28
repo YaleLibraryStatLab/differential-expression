@@ -1,0 +1,183 @@
+% ============================================================
+% StatLab Beamer Theme — Custom Header
+% Mirrors the color scheme and layout of custom.scss (RevealJS)
+% ============================================================
+
+% ── COLORS (matches custom.scss variables) ───────────────────
+\usepackage{xcolor}
+
+\definecolor{statprimary}{HTML}{2c3e50}    % dark gray-blue (body text)
+\definecolor{statsecondary}{HTML}{2980b9}  % blue (structure, links)
+\definecolor{statyale}{HTML}{00356b}       % Yale blue (footer)
+
+% Box backgrounds
+\definecolor{stataccbg}{HTML}{e8f4f8}      % light cyan  — theorem/lemma
+\definecolor{statalert}{HTML}{e74c3c}      % red          — alert
+\definecolor{statalertbg}{HTML}{fdedec}    % light red bg
+\definecolor{statdefinition}{HTML}{e67e22} % orange       — definition
+\definecolor{statdefbg}{HTML}{fdf2e9}      % light orange bg
+\definecolor{statexample}{HTML}{27ae60}    % green        — example
+\definecolor{statexbg}{HTML}{eafaf1}       % light green bg
+\definecolor{statproof}{HTML}{95a5a6}      % gray         — proof
+\definecolor{statproofbg}{HTML}{f9f9f9}    % light gray bg
+
+% ── FONT: CMU Serif (LaTeX default) ─────────────────────────
+% Switch Beamer from its default sans-serif to the classic serif.
+\usefonttheme{serif}
+% For XeLaTeX, explicitly select the OpenType CMU Serif face:
+\setmainfont{CMU Serif}
+
+% ── BEAMER COLORS ────────────────────────────────────────────
+
+% Frame chrome
+\setbeamercolor{frametitle}{bg=statprimary, fg=white}
+\setbeamercolor{title}{fg=statprimary}
+\setbeamercolor{subtitle}{fg=statsecondary}
+\setbeamercolor{author}{fg=statprimary!70}
+\setbeamercolor{date}{fg=statprimary!70}
+\setbeamercolor{normal text}{fg=statprimary, bg=white}
+\setbeamercolor{structure}{fg=statsecondary}
+
+% Bullets and lists
+\setbeamercolor{item}{fg=statsecondary}
+\setbeamercolor{subitem}{fg=statsecondary!70}
+\setbeamercolor{enumerate item}{fg=statsecondary}
+\setbeamercolor{enumerate subitem}{fg=statsecondary!70}
+
+% Bullet shape: filled circle (level 1), open circle (level 2), dash (level 3)
+\setbeamertemplate{itemize item}{\small$\bullet$}
+\setbeamertemplate{itemize subitem}{\small$\circ$}
+\setbeamertemplate{itemize subsubitem}{\small\textendash}
+
+% Default block — Yale blue
+\setbeamercolor{block title}{fg=white, bg=statyale}
+\setbeamercolor{block body}{bg=stataccbg, fg=statprimary}
+
+% Alert block — Yale blue (unified)
+\setbeamercolor{block title alerted}{fg=white, bg=statyale}
+\setbeamercolor{block body alerted}{bg=stataccbg, fg=statprimary}
+
+% Example block — Yale blue (unified)
+\setbeamercolor{block title example}{fg=white, bg=statyale}
+\setbeamercolor{block body example}{bg=stataccbg, fg=statprimary}
+
+% ── FONT SIZES ───────────────────────────────────────────────
+\setbeamerfont{title}{size=\LARGE, series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{size=\large, series=\bfseries}
+\setbeamerfont{block title}{size=\small, series=\bfseries}
+\setbeamerfont{footline}{size=\scriptsize}
+
+% ── FRAME TITLE ──────────────────────────────────────────────
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[%
+    wd=\paperwidth, ht=2.6ex, dp=0.9ex, leftskip=0.9em%
+  ]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+  \end{beamercolorbox}%
+}
+
+% ── HEADLINE: presentation title, top-right (hidden on title slide) ──
+\setbeamercolor{headline}{fg=statprimary!55, bg=white}
+\setbeamertemplate{headline}{%
+  \ifnum\insertframenumber>1%
+    \begin{beamercolorbox}[wd=\paperwidth, ht=2.2ex, dp=0.5ex]{headline}%
+      \hfill%
+      \usebeamercolor[fg]{headline}{\fontsize{6.5}{8}\selectfont\inserttitle}%
+      \hspace*{0.9em}%
+    \end{beamercolorbox}%
+  \else%
+    \vspace{2.7ex}% reserve same height on title slide so frame title aligns
+  \fi%
+}
+
+% ── FOOTER: branding + slide number (no logo) 
+\setbeamertemplate{footline}{%
+  {\color{statprimary!25}\hrule height 0.4pt}%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4ex, dp=1.4ex]{footline}%
+    \hspace*{0.9em}%
+    \textcolor{statyale}{\fontfamily{qpl}\selectfont Yale Library StatLab $\times$ Bioinformatics Support Hub}%
+    \hfill%
+    \textcolor{statprimary!50}{\insertframenumber\,/\,\inserttotalframenumber}%
+    \hspace*{0.9em}%
+  \end{beamercolorbox}%
+}
+
+% ── TIKZ ─────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric}
+
+% ── IMAGE CONSTRAINTS ────────────────────────────────────────
+% Keep images within the content area so they never bleed into the footer.
+% max-width = full text column; max-height = 65 % of the frame text height.
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth, height=0.65\textheight, keepaspectratio}
+
+% ── TITLE PAGE ───────────────────────────────────────────────
+\setbeamertemplate{title page}{%
+  \vspace*{2.5em}%
+  \begin{beamercolorbox}[sep=0pt, left]{title}%
+    \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
+  \end{beamercolorbox}%
+  \vspace*{0.5em}%
+  \begin{beamercolorbox}[sep=0pt, left]{subtitle}%
+    \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par%
+  \end{beamercolorbox}%
+  \vspace*{1.8em}%
+  \begin{beamercolorbox}[sep=0pt, left]{author}%
+    \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par%
+  \end{beamercolorbox}%
+  \vspace*{0.4em}%
+  \begin{beamercolorbox}[sep=0pt, left]{date}%
+    \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par%
+  \end{beamercolorbox}%
+}
+
+% ── CUSTOM ENVIRONMENTS ──────────────────────────────────────
+% Use these inside raw LaTeX blocks (```{=latex}) in your .qmd.
+% Each mirrors the matching CSS class from the RevealJS theme.
+
+% Definition — Yale blue (unified)
+\newenvironment{definitionblock}[1][Definition]{%
+  \begingroup%
+  \setbeamercolor{block title}{fg=white, bg=statyale}%
+  \setbeamercolor{block body}{bg=stataccbg, fg=statprimary}%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+  \endgroup%
+}
+
+% Lemma — blue, mirrors .lemma (same as default block)
+\newenvironment{lemmablock}[1][Lemma]{%
+  \begingroup%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+  \endgroup%
+}
+
+% Corollary — blue, mirrors .corollary (same as default block)
+\newenvironment{corollaryblock}[1][Corollary]{%
+  \begingroup%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+  \endgroup%
+}
+
+% Proof with QED square — Yale blue (unified)
+\newenvironment{proofblock}[1][Proof]{%
+  \begingroup%
+  \setbeamercolor{block title}{fg=white, bg=statyale}%
+  \setbeamercolor{block body}{bg=stataccbg, fg=statprimary}%
+  \begin{block}{\textit{#1}}%
+  \itshape%
+}{%
+  \hfill$\square$%
+  \end{block}%
+  \endgroup%
+}
