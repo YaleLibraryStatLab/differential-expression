@@ -531,7 +531,7 @@ Examples (means model `~ 0 + treatment`):
 - Groups I+II vs.\ III+CTL: weights $(-\tfrac{1}{2},\ \tfrac{1}{2},\ \tfrac{1}{2},\ -\tfrac{1}{2})$
 
 ```{r echo=TRUE, eval=FALSE}
-results(dds, contrast = c(0, 1/3, 1/3, 1/3))
+results(dds, contrast = c(-1, 1/3, 1/3, 1/3))
 ```
 
 ## Interaction Designs
