@@ -37,8 +37,6 @@ info <- read.csv(here("data", "clean", "shank3_metadata_clean.csv"),
                  )
 
 
-
-
 # 3. Define reference levels for comparisons ----
 
 # Establish the reference groups (baselines) used in differential expression tests.
