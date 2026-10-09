@@ -16,22 +16,27 @@
 
 library(here)
 
-# Results tables are written to results/ (created if it doesn't exist)
-dir.create(here("results"), showWarnings = FALSE)
+# Results tables and figures are written to results/ and figures/, respectively 
+# (created if it doesn't exist)
+for (d in c("results", "figures")) {
+  dir.create(here(d), showWarnings = FALSE)
+}
 
 # 2. Input data ----
 
 # 2.1 Read raw counts ----
-rawc <- read.csv(here("data", "raw", "rawCounts_Shank3.csv"),
+rawc <- read.csv(here("data", "clean", "shank3_rawcounts_clean.csv"),
                  header = TRUE,
                  row.names = 1
                  )
 
 # 2.2 Read sample metadata ----
-info <- read.csv(here("data", "raw", "metadata_Shank3.csv"),
+info <- read.csv(here("data", "clean", "shank3_metadata_clean.csv"),
                  header = TRUE,
                  stringsAsFactors = TRUE
                  )
+
+
 
 
 # 3. Define reference levels for comparisons ----
